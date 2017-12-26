@@ -1,6 +1,6 @@
 {
     "name": "vue-icons-picker",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Icons picker UI used in both FontAwesome-Picker & MaterialDesignIcons-Picker",
     "main": "IconsPicker.vue",
     "repository": {
