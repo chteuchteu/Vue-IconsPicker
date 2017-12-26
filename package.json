@@ -15,5 +15,8 @@
     "bugs": {
         "url": "https://github.com/chteuchteu/Vue-IconsPicker/issues"
     },
-    "homepage": "https://github.com/chteuchteu/Vue-IconsPicker#readme"
+    "homepage": "https://github.com/chteuchteu/Vue-IconsPicker#readme",
+    "dependencies": {
+        "material-scss-colors": "^1.1.2"
+    }
 }

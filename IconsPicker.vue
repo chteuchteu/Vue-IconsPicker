@@ -18,6 +18,7 @@
                     v-model="filter"
                 />
                 <i
+                    class="filter-clear"
                     :class="{
                         [config.icons.close]: true,
                         hidden: filter.length === 0
