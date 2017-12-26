@@ -90,7 +90,7 @@ header.header {
         margin: 5px 0;
         display: inline-block;
 
-        i.mdi {
+        i {
             vertical-align: baseline;
             margin: 0 10px 0 5px;
         }
@@ -219,7 +219,7 @@ header.header {
 // Random icons colors
 .random-icon-colors {
     @for $i from 1 through length($colors) {
-        .icons .mdi:nth-child(#{$i}n) {
+        .icons i:nth-child(#{$i}n) {
             color: map-get(nth(map-values($colors), $i), "500");
         }
     }
@@ -309,7 +309,7 @@ header.header {
 // Accent color change on footer #icon-icon click
 @each $color, $shades in $colors {
     .accent-color--#{$color} {
-        .icons .mdi.active,
+        .icons i.active,
         .icon-properties .icon-icon {
             background-color: map-get($shades, "500");
         }
