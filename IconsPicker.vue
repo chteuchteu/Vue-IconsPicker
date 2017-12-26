@@ -143,9 +143,9 @@
 </template>
 
 <script>
-    import { request } from '../js/Ajax';
-    import { randomInt } from '../js/Math';
-    import { computeOffset, outerHeight } from '../js/jQuery';
+    import { request } from './lib/Request';
+    import { randomInt } from './lib/Math';
+    import { computeOffset, outerHeight } from './lib/jQuery';
 
     const ACCENT_COLOR_KEY = 'color-accent';
     const RANDOM_COLORS_KEY = 'random-colors';
