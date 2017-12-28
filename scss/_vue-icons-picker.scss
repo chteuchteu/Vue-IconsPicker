@@ -2,6 +2,10 @@
  * Vue-IconsPicker
  */
 
+@if not variable-exists(color-primary) {
+    @error "You must define a $color-primary variable prior to importing this file!";
+}
+
 @import 'material';
 @import '~material-scss-colors';
 
@@ -17,6 +21,13 @@ $transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1); // According to mat
 
 // Remove "yellow" from colors list
 $colors: map-remove($colors, "yellow");
+
+// Add primary color to colors map
+$colors: map-merge($colors, (
+    primary: (
+        500: $color-primary
+    )
+));
 
 // Chrome popup default font style
 body {
@@ -83,12 +94,14 @@ header.header {
     padding: 5px 10px;
     position: relative;
     z-index: 1;
+    background-color: $color-primary;
     @extend .elevation-tiny;
 
     h1 {
         font-weight: normal;
         margin: 5px 0;
         display: inline-block;
+        text-shadow: 1px 1px 0 $color-primary, 2px 2px 0 rgba(0,0,0,0.15);
 
         i {
             vertical-align: baseline;
@@ -254,7 +267,7 @@ header.header {
         margin: 5px 20px 5px 5px;
         border-radius: 50%;
         transition-duration: $timing-short;
-        @extend .elevation-tiny;
+        box-shadow: 0 1px 1px rgba(#000, 0.1);
     }
 
     &:not(.inactive) .icon-icon {
@@ -329,9 +342,12 @@ footer {
     background-color: $footer-background;
 
     i {
-        font-size: 20px;
-        line-height: 20px;
+        $size: 20px;
+        font-size: $size!important;
+        line-height: $size!important;
+        width: $size;
         transition-duration: $timing-short;
+        text-align: center;
     }
 
     .left { float: left; }

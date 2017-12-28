@@ -102,6 +102,9 @@
                 </a>
                 <a
                     class="btn-sm-round"
+                    :class="{
+                        active: randomColors
+                    }"
                     href="#"
                     @click.prevent="randomColors = !randomColors"
                     title="Random colors"
@@ -174,7 +177,7 @@
             svg: [],
 
             accentColor: null,
-            randomColors: false,
+            randomColors: true,
             activeIcon: null,
             isIconActive: false,
         }),
@@ -189,8 +192,8 @@
         },
         mounted() {
             // Load accent color settings
-            this.accentColor = localStorage.getItem(ACCENT_COLOR_KEY) || 'orange';
-            this.randomColors = JSON.parse(localStorage.getItem(RANDOM_COLORS_KEY)) || false;
+            this.accentColor = localStorage.getItem(ACCENT_COLOR_KEY) || 'primary';
+            this.randomColors = JSON.parse(localStorage.getItem(RANDOM_COLORS_KEY)) || true;
 
             // Load icons
             request(getResourceUrl('icons.min.json'))
