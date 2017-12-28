@@ -271,7 +271,6 @@ header.header {
 
     &:not(.inactive) .icon-icon {
         cursor: pointer;
-        @extend .elevation-1;
     }
 
     .properties {
