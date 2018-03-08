@@ -193,7 +193,7 @@
         mounted() {
             // Load accent color settings
             this.accentColor = localStorage.getItem(ACCENT_COLOR_KEY) || 'primary';
-            this.randomColors = JSON.parse(localStorage.getItem(RANDOM_COLORS_KEY)) || true;
+            this.randomColors = JSON.parse(localStorage.getItem(RANDOM_COLORS_KEY)) === true;
 
             // Load icons
             request(getResourceUrl('icons.min.json'))
