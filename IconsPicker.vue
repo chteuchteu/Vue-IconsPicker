@@ -183,11 +183,11 @@
         }),
         computed: {
             filteredIcons() {
-                const filterVal = this.filter.replace(filterReplaceRegex, ' ');
+                const filterVal = this.filter
+                    .replace(filterReplaceRegex, ' ')
+                    .toLowerCase();
 
-                return this.icons.filter((icon) => {
-                    return icon.searchable.indexOf(filterVal) !== -1;
-                });
+                return this.icons.filter((icon) => icon.searchable.indexOf(filterVal) !== -1);
             }
         },
         mounted() {
