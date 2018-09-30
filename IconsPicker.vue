@@ -112,7 +112,7 @@
                     <i :class="config.icons.randomColors"></i>
                 </a>
                 <a
-                    v-if="config.canCopySvg"
+                    v-if="config.enableSvgFeatures"
                     class="btn-sm-round"
                     href="#"
                     v-show="isIconActive"
@@ -120,6 +120,16 @@
                     title="Copy SVG"
                 >
                     <i :class="config.icons.svg"></i>
+                </a>
+                <a
+                    v-if="config.enableSvgFeatures"
+                    class="btn-sm-round"
+                    href="#"
+                    v-show="isIconActive"
+                    @click.prevent="downloadSvg"
+                    title="Download SVG"
+                >
+                    <i :class="config.icons.download"></i>
                 </a>
             </div>
             <div class="right">
@@ -207,7 +217,7 @@
             this.loading = false;
 
             // Load svg
-            if (this.config.canCopySvg) {
+            if (this.config.enableSvgFeatures) {
                 request(getResourceUrl('icons-svg.min.json'))
                     .then(JSON.parse)
                     .then((response) => {
@@ -258,7 +268,7 @@
                 this.accentColor = COLORS[i > COLORS.length-1 ? 0 : i];
             },
             copySvg() {
-                if (!this.config.canCopySvg) {
+                if (!this.config.enableSvgFeatures) {
                     throw new Error('You\'re not supposed to do this!');
                 }
                 if (this.activeIcon === null) {
@@ -277,7 +287,26 @@
                     event.preventDefault();
                 };
                 document.execCommand("Copy", false, null);
-            }
+            },
+            downloadSvg() {
+                if (!this.config.hasSvgFile) {
+                    throw new Error('You\'re not supposed to do this!');
+                }
+                if (this.activeIcon === null) {
+                    return;
+                }
+
+                const name = this.activeIcon.name,
+                    svg = this.svg[name];
+
+                const blob = new Blob([svg], {type: "text/plain"});
+                const url = URL.createObjectURL(blob);
+
+                chrome.downloads.download({
+                    url: url,
+                    filename: name+'.svg',
+                });
+            },
         },
         watch: {
             accentColor() {
