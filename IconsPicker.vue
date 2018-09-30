@@ -289,7 +289,7 @@
                 document.execCommand("Copy", false, null);
             },
             downloadSvg() {
-                if (!this.config.hasSvgFile) {
+                if (!this.config.enableSvgFeatures) {
                     throw new Error('You\'re not supposed to do this!');
                 }
                 if (this.activeIcon === null) {
